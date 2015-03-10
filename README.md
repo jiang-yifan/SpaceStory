@@ -7,7 +7,7 @@ Currently, circular objects (asteroids) are depicted as a collection of atoms ra
 In order to allow for collision detection, I implemented the Graham scan to detect the convex hull's of built objects.
 Those convex hulls are then used in conjunction with the Seperate Axis Theorem to detect collisions.
 
-To Do:
+To Do:  
 Break objects into concave or convex mini parts after collision based on momentum.
 Implement ear-clipping to allow use of the Seperate Axis Theorem on concave objects.
 Seperate the environment into various sectors to improve performance of the physics engine.
