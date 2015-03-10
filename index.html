@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script src = "./vendor/keymaster.js"></script>
+    <script src = "./javascript/util/array_patch.js"></script>
+    <script src = "./javascript/util/number_patch.js"></script>
+    <script src = "./javascript/util/function_patch.js"></script>
+    <script src = "./javascript/util/utils.js"></script>
+    <script src = "./javascript/util/vectors.js"></script>
+    <script src = "./javascript/physic/object_properties.js"></script>
+    <script src = "./javascript/physic/collision.js"></script>
+    <script src = "./javascript/objects/atom.js"></script>
+    <script src = "./javascript/objects/atom_collection.js"></script>
+    <script src = "./javascript/objects/moving_object.js"></script>
+    <script src = "./javascript/objects/particle.js"></script>
+    <script src = "./javascript/objects/asteroid.js"></script>
+
+  </head>
+  <body style="margin: 0px;">
+    <canvas style="background-color: #000000;"></canvas>
+    <script>
+      canvasEl = document.getElementsByTagName("canvas")[0];
+      canvasEl.height = window.innerHeight;
+      canvasEl.width = window.innerWidth;
+      ctx = canvasEl.getContext("2d");
+      as = new Asteroids.Asteroid({radius: 100}, [100,200]);
+      // as.draw(canvasEl.getContext("2d"));
+      // gameview = new Asteroids.GameView(canvasEl.getContext("2d"));
+      // gameview.start();
+    </script>
+  </body>
+</html>
