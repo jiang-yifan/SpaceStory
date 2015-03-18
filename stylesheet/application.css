@@ -1,0 +1,23 @@
+.new{
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  z-index: 10;
+  max-width: 220px;
+}
+
+label{
+  color: white;
+  display: block;
+}
+
+span {
+  color: white;
+}
+button{
+  margin: auto;
+}
+
+body{
+  position:relative;
+}
