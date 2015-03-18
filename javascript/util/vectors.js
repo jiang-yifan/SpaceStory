@@ -3,7 +3,7 @@
     this.y = coords[0];
     this.x = coords[1];
     this.magnitude = this.roundedMagnitude();
-  }
+  };
 
   Vector.randomVec = function (max, min){
     var coords = [Math.random()*(max-min) + min,
@@ -11,15 +11,19 @@
     return new Vector(coords);
   };
 
-  Vector.randomCircleVec = function (radius) {
-    var y = Math.floor(Math.random()*(2 * radius) - radius);
-    var maxX = Math.floor(Math.pow(Math.pow(radius, 2) - Math.pow(y, 2), .5));
-    var x = Math.floor(Math.random() *(2 *maxX) - maxX);
+  Vector.createVec = function(coord1, coord2){
+    var y = coord2.y - coord1.y;
+    var x = coord2.x - coord1.x;
     return new Vector([y,x]);
-  }
+  };
+
+  Vector.prototype.normal = function (){
+    return new Vector([this.x, -this.y]);
+  };
 
   Vector.prototype.add = function (vector) {
-    return new Vector([this.y + vector.y, this.x + vector.x]);
+    this.y + vector.y;
+    this.x + vector.x;
   };
 
   Vector.prototype.roundedMagnitude = function(){

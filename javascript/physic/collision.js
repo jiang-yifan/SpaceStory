@@ -11,13 +11,20 @@
   };
 
  function findCollisionPos(obj1, obj2){
-    for (var i = 0; i < obj1.outerShellPos.length; i++) {
-      for (var j = 0; j < obj2.outerShellPos.length; j++) {
-        if(obj1.outerShellPos[i].equal(obj2.outerShellPos[j])){
-          return obj1.outerShellPos[i];
-        }
-      }
-    }
-  }
+   var normals = getNormals(obj1);
+   normals.concat(getNormals(obj2));
+ };
+
+ function getNormal(obj) {
+   var len = obj.outerShell.length;
+   var normals = [] ;
+   for (var i = 0; i < len - 1; i++) {
+     var vector = Vector.createVec(obj.outerShell[i], obj.outerShell[i+1]);
+     normals.push(vector.normal());
+   }
+   vector = Vector.createVec(obj.outerShell[len - 1], obj.outerShell[0]);
+   normals.push(vector.normal());
+   return normals
+ }
 
 })();

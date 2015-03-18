@@ -9,12 +9,12 @@
     this.atoms.push(atom);
   };
 
-  AtomCollection.prototype.outterShell = function(){
-    if(!this._outterShell){
+  AtomCollection.prototype.outerShell = function(){
+    if(!this._outerShell){
       this.sortAtoms();
-      this.findOutterShell();
+      this.findouterShell();
     }
-    return this._outterShell;
+    return this._outerShell;
   };
 
   AtomCollection.prototype.sortAtoms = function () {
@@ -63,24 +63,24 @@
     this.atoms.unshift(this.atoms.splice(lowerRightIndex, 1)[0]);
   };
 
-  AtomCollection.prototype.findOutterShell = function () {
-    this._outterShell = [this.atoms[0], this.atoms[1]];
+  AtomCollection.prototype.findouterShell = function () {
+    this._outerShell = [this.atoms[0], this.atoms[1]];
     var i = 2;
     while (i< this.atoms.length) {
-      if (this._outterShell.last() == this.atoms[0]) {
-        this._outterShell.push(this.atoms[i]);
+      if (this._outerShell.last() == this.atoms[0]) {
+        this._outerShell.push(this.atoms[i]);
         i++;
       }
 
       if (this.isLeft(
-                  this._outterShell[this._outterShell.length - 2],
-                  this._outterShell.last(),
+                  this._outerShell[this._outerShell.length - 2],
+                  this._outerShell.last(),
                   this.atoms[i]
                 ) < 0){
-        this._outterShell.push(this.atoms[i]);
+        this._outerShell.push(this.atoms[i]);
         i++;
       } else{
-        this._outterShell.pop();
+        this._outerShell.pop();
       }
     }
   };
@@ -98,15 +98,27 @@
 
   AtomCollection.prototype.draw = function (ctx) {
     ctx.beginPath();
-    ctx.moveTo(this.outterShell()[0].pos.x, this.outterShell()[0].pos.y)
-    for (var i = 1; i < this.outterShell().length; i++) {
-      ctx.lineTo(this.outterShell()[i].pos.x, this.outterShell()[i].pos.y)
+    ctx.moveTo(this.outerShell()[0].pos.x, this.outerShell()[0].pos.y)
+    for (var i = 1; i < this.outerShell().length; i++) {
+      ctx.lineTo(this.outerShell()[i].pos.x, this.outerShell()[i].pos.y)
       ctx.lineWidth = 1;
       ctx.strokeStyle = '#ff0000';
       ctx.stroke();
     }
-    ctx.lineTo(this.outterShell()[0].pos.x, this.outterShell()[0].pos.y)
+    ctx.lineTo(this.outerShell()[0].pos.x, this.outerShell()[0].pos.y)
     ctx.stroke();
+  };
+
+  AtomCollection.prototype.getNorm = function () {
+    var len = this.outerShell().length;
+    var normals = [] ;
+    for (var i = 0; i < len - 1; i++) {
+      var vector = Vector.createVec(this.outerShell()[i].pos, this.outerShell()[i+1].pos);
+      normals.push(vector.normal());
+    }
+    vector = Vector.createVec(this.outerShell()[len - 1].pos, this.outerShell()[0].pos);
+    normals.push(vector.normal());
+    return normals;
   };
 
 })();

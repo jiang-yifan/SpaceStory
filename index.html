@@ -6,6 +6,7 @@
     <script src = "./javascript/util/function_patch.js"></script>
     <script src = "./javascript/util/utils.js"></script>
     <script src = "./javascript/util/vectors.js"></script>
+    <script src = "./javascript/util/coordinate.js"></script>
     <script src = "./javascript/physic/object_properties.js"></script>
     <script src = "./javascript/physic/collision.js"></script>
     <script src = "./javascript/objects/atom.js"></script>
@@ -22,7 +23,7 @@
       canvasEl.height = window.innerHeight;
       canvasEl.width = window.innerWidth;
       ctx = canvasEl.getContext("2d");
-      as = new Asteroids.Asteroid({radius: 100}, [100,200]);
+      as = new Asteroids.Asteroid({radius: 100}, [120,200]);
       // as.draw(canvasEl.getContext("2d"));
       // gameview = new Asteroids.GameView(canvasEl.getContext("2d"));
       // gameview.start();
