@@ -12,7 +12,7 @@
   AtomCollection.prototype.outerShell = function(){
     if(!this._outerShell){
       this.sortAtoms();
-      this.findouterShell();
+      this.findOuterShell();
     }
     return this._outerShell;
   };
@@ -54,16 +54,16 @@
         lowerRightIndex = i;
       } else if (this.atoms[i].pos.y === biggestY &&
             this.atoms[i].pos.x > biggestX){
-              debugger;
         biggestX = this.atoms[i].pos.x;
         lowerRightIndex = i;
       }
     }
-    debugger;
-    this.atoms.unshift(this.atoms.splice(lowerRightIndex, 1)[0]);
+    var temp = this.atoms[0];
+    this.atoms[0] = this.atoms[lowerRightIndex];
+    this.atoms[lowerRightIndex] = temp;
   };
 
-  AtomCollection.prototype.findouterShell = function () {
+  AtomCollection.prototype.findOuterShell = function () {
     this._outerShell = [this.atoms[0], this.atoms[1]];
     var i = 2;
     while (i< this.atoms.length) {
@@ -109,16 +109,21 @@
     ctx.stroke();
   };
 
-  AtomCollection.prototype.getNorm = function () {
-    var len = this.outerShell().length;
-    var normals = [] ;
-    for (var i = 0; i < len - 1; i++) {
-      var vector = Vector.createVec(this.outerShell()[i].pos, this.outerShell()[i+1].pos);
-      normals.push(vector.normal());
+  AtomCollection.prototype.normals = function () {
+    if(!this._normals){
+      this.getNormals();
     }
-    vector = Vector.createVec(this.outerShell()[len - 1].pos, this.outerShell()[0].pos);
-    normals.push(vector.normal());
-    return normals;
+    return this._normals
   };
 
+  AtomCollection.prototype.getNormals = function () {
+    var len = this.outerShell().length;
+    this._normals = [] ;
+    for (var i = 0; i < len - 1; i++) {
+      var vector = Vector.createVec(this.outerShell()[i].pos, this.outerShell()[i+1].pos);
+      this._normals.push(vector.normal());
+    }
+    vector = Vector.createVec(this.outerShell()[len - 1].pos, this.outerShell()[0].pos);
+    this._normals.push(vector.normal());
+  };
 })();

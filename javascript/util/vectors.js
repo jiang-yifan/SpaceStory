@@ -33,4 +33,8 @@
       );
   };
 
+  Vector.prototype.dot = function (projection) {
+    return this.x * projection.x/projection.magnitude +
+            this.y * projection.y/projection.magnitude
+  };
 })();
