@@ -17,13 +17,13 @@
      var result1 = getMinMax(obj1, obj1.normals()[i])
      var result2 = getMinMax(obj2, obj1.normals()[i])
      if(result1[0] < result2[1] || result1[1] > result2[0]){
-       console.log("no gap");
+       return false;
        break;
      }
      count++;
    }
    if(count == len){
-     console.log("collision");
+     return true;
    }
  };
 

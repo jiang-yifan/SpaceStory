@@ -3,7 +3,7 @@
   top: 30px;
   left: 20px;
   z-index: 10;
-  max-width: 220px;
+  max-width: 170px;
 }
 
 label{
@@ -20,4 +20,8 @@ button{
 
 body{
   position:relative;
+}
+
+.unclickable{
+  pointer-events:none;
 }

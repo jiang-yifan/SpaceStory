@@ -23,10 +23,10 @@
     <canvas style="background-color: #000000;"></canvas>
     <form class="new">
       <label for=radius>Radius:</label>
-      <input type=range min=25 max=500 value=25 id=radius>
+      <input type=range min=25 max=200 value=25 id=radius>
       <span class="preview" id="radius_preview">25</span>
       <label for=radius>Atoms:</label>
-      <input type=range min=25 max=2000 value=25 id=atoms>
+      <input type=range min=25 max=700 value=25 id=atoms>
       <span class="preview" id="atoms_preview">25</span>
       <button class="create">Create Asteroid</button>
     </form>
@@ -34,21 +34,6 @@
       $(function(){
         new Demo();
       })
-      // as = new Asteroids.Asteroid({radius: 100}, [120,200]);
-      // bs = new Asteroids.Asteroid({radius: 50}, [120,200]);
-    //   function getMousePos(canvas, evt) {
-    //     var rect = canvas.getBoundingClientRect();
-    //     return {
-    //       x: evt.clientX - rect.left,
-    //       y: evt.clientY - rect.top
-    //     };
-    //   }
-    //   canvasEl.addEventListener('mousemove', function(evt) {
-    //    var mousePos = getMousePos(canvasEl, evt);
-    //    console.log(mousePos);
-    //  })
-      // gameview = new Asteroids.GameView(canvasEl.getContext("2d"));
-      // gameview.start();
     </script>
   </body>
 </html>
