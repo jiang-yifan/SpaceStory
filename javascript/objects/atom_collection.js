@@ -88,10 +88,9 @@
   AtomCollection.prototype.drawAtoms = function(ctx){
     for (var i = 0; i < this.atoms.length; i++) {
       ctx.beginPath();
-      ctx.arc(this.atoms[i].pos.x, this.atoms[i].pos.y, 5, 0, 2 * Math.PI, false);
+      ctx.arc(this.atoms[i].pos.x, this.atoms[i].pos.y, 3, 0, 2 * Math.PI, false);
       ctx.fillStyle = 'green';
       ctx.fill();
-      ctx.stroke();
       ctx.closePath();
     }
   };
@@ -102,7 +101,7 @@
     for (var i = 1; i < this.outerShell().length; i++) {
       ctx.lineTo(this.outerShell()[i].pos.x, this.outerShell()[i].pos.y)
       ctx.lineWidth = 1;
-      ctx.strokeStyle = '#ff0000';
+      ctx.strokeStyle = this.color;
       ctx.stroke();
     }
     ctx.lineTo(this.outerShell()[0].pos.x, this.outerShell()[0].pos.y)
@@ -125,5 +124,12 @@
     }
     vector = Vector.createVec(this.outerShell()[len - 1].pos, this.outerShell()[0].pos);
     this._normals.push(vector.normal());
+  };
+
+  AtomCollection.prototype.move = function (vector) {
+    this.center = this.center.add(vector);
+    this.atoms.forEach(function(atom){
+      atom.pos = atom.pos.add(vector);
+    })
   };
 })();

@@ -14,4 +14,8 @@
   Coordinate.prototype.add = function (coordinate) {
     return new Coordinate([this.y + coordinate.y, this.x + coordinate.x]);
   };
+
+  Coordinate.prototype.subtract = function (coordinate) {
+    return new Coordinate([this.y - coordinate.y, this.x - coordinate.x]);
+  };
 })();
