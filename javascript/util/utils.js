@@ -10,6 +10,11 @@
     );
   };
 
+  Util.isLeft = function (P0, P1, P2) {
+    return ( (P1.x - P0.x) * (P2.y - P0.y)
+           - (P2.x - P0.x) * (P1.y - P0.y) );
+  };
+
   Util.roundedCircleArea = function(radius){
     return Math.floor(Math.pow(radius, 2) * Math.PI);
   };
@@ -38,5 +43,5 @@
     // this.vel = vel;
     return [x, y];
   };
-  
+
 })();

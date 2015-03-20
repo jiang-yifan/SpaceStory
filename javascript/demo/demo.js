@@ -7,6 +7,7 @@
   };
 
   Demo.prototype.findAsteroid = function (event) {
+    event.preventDefault();
     $("form").addClass('unclickable');
     var mousePos = new Coordinate([event.clientY, event.clientX]);
     for (var i = 0; i < this.asteroids.length; i++) {
@@ -22,8 +23,18 @@
     if(Util.distance(asteroid.center, mousePos) < asteroid.radius){
       this.currentAsteroid = asteroid;
       this.currentPosition = mousePos;
-      return true;
+      // if (this.inAsteroid) {
+      //   return true;
+      // }
     };
+  };
+
+  Demo.prototype.inAsteroid = function () {
+    var count = 0;
+    for (var i = 0; i < this.currentAsteroid.outerShell.length - 1; i++) {
+      Util.isLeft(this.currentPosition,
+    }
+    Util.isLeft(this.currentPosition,
   };
 
   Demo.prototype.moveAsteroid = function (event) {

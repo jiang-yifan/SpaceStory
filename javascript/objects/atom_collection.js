@@ -26,7 +26,7 @@
     if(P1 == this.atoms[0]){
       return -1;
     }
-    var sort = this.isLeft(this.atoms[0], P1, P2)
+    var sort = Util.isLeft(this.atoms[0].pos, P1.pos, P2.pos)
     if (sort == 0) {
       if(P1.pos.y < P2.pos.y){
         sort = -1;
@@ -35,11 +35,6 @@
       }
     }
     return sort;
-  };
-
-  AtomCollection.prototype.isLeft = function (P0, P1, P2) {
-    return ( (P1.pos.x - P0.pos.x) * (P2.pos.y - P0.pos.y)
-           - (P2.pos.x - P0.pos.x) * (P1.pos.y - P0.pos.y) );
   };
 
   AtomCollection.prototype.getLowerRightAtom = function () {
@@ -72,10 +67,10 @@
         i++;
       }
 
-      if (this.isLeft(
-                  this._outerShell[this._outerShell.length - 2],
-                  this._outerShell.last(),
-                  this.atoms[i]
+      if (Util.isLeft(
+                  this._outerShell[this._outerShell.length - 2].pos,
+                  this._outerShell.last().pos,
+                  this.atoms[i].pos
                 ) < 0){
         this._outerShell.push(this.atoms[i]);
         i++;
